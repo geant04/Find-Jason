@@ -9,7 +9,7 @@ public class IdleTask : TaskBase
 
     private float GetWaitTime()
     {
-        return Random.Range(0.0f, 1.0f);
+        return Random.Range(0.0f, 4.0f);
     }
 
     public IdleTask(NPC parentNPC) : base(parentNPC)
@@ -27,17 +27,17 @@ public class IdleTask : TaskBase
     {
         float random = Random.Range(0.0f, 1.0f);
 
-        if (!ParentNPC.IsJason && random > 0.65f)
+        if (!ParentNPC.IsJason && random > 0.70f)
         {
             return Missions.GoNearJason(ParentNPC);
         }
 
-        if (random > 0.1f)
+        if (random > 0.4f)
         {
             // A random walk...
             for (int i = 0; i < 20; i++) 
             {
-                float randOut = Random.Range(10.0f, 20.0f);
+                float randOut = Random.Range(20.0f, 40.0f);
                 Vector3 randomDirection = Random.insideUnitSphere * randOut;
                 randomDirection.y = 0.0f;
 

@@ -55,12 +55,12 @@ public class Missions
         // calculate a direction towards Jason
         for (int i = 0; i < trials && GameManager.Jason != null; i++)
         {
-            float randOut = Random.Range(0.0f, 20.0f);
-
             Vector3 randomDirection = Random.insideUnitSphere;
             randomDirection.y = 0.0f;
 
             Vector3 toJason = GameManager.Jason.transform.position - ParentNPC.GetPosition();
+            float randOut = Random.Range(-2.0f, 2.0f) + toJason.magnitude;
+
             randomDirection = Vector3.Normalize(randomDirection + toJason) * randOut;
 
             Vector3 target = ParentNPC.GetPosition() + randomDirection;

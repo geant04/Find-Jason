@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnFriends()
     {
-        int n = 30;
+        int n = 100;
         int rand = Random.Range(0, n);
 
         for (int i = 0; i < n; i++)
