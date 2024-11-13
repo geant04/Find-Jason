@@ -12,8 +12,11 @@ public class CameraController : MonoBehaviour
     public float maxZoomOut;
     public float maxZoomIn;
 
-    private Vector3 forward;
+    public float maxUp;
+    public float maxLow;
 
+    private Vector3 ogPos;
+    private Vector3 forward;
     private bool looking = false;
 
     // used for capturing I suppose
@@ -21,6 +24,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        ogPos = transform.position;
         forward = cam.transform.forward;
         cameraTargetDetect = GetComponent<CameraTargetDetect>();
     }
@@ -53,6 +57,20 @@ public class CameraController : MonoBehaviour
         {
             cam.fieldOfView = Mathf.Min(maxZoomOut, cam.fieldOfView + transSpeed * Time.deltaTime);
         }
+
+        float y = transform.position.y;
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            y -= transSpeed * Time.deltaTime * (2.0f / (maxUp + maxLow + 0.001f));
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            y += transSpeed * Time.deltaTime * (2.0f / (maxUp + maxLow + 0.001f));
+        }
+
+        y = Mathf.Clamp(y, ogPos.y - maxLow, ogPos.y + maxUp);
+        transform.position = new Vector3(transform.position.x, y, transform.position.z);
 
         if (looking)
         {
