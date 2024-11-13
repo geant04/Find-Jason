@@ -6,14 +6,17 @@ using UnityEngine.AI;
 public class NPC : MonoBehaviour
 {
     NPCTaskSystem taskSystem;
-    [HideInInspector] public NavMeshAgent NavMeshAgent;
-    public float moveSpeed;
-    public bool IsJason = false;
+    NPCType npcType;
 
-    void Start()
+    [HideInInspector] public float moveSpeed;
+    [HideInInspector] public bool IsJason = false;
+    [HideInInspector] public NavMeshAgent NavMeshAgent;
+    [HideInInspector] public Transform capsuleTransform;
+
+    public void Initialize()
     {
-        taskSystem = new NPCTaskSystem(this);
         NavMeshAgent = GetComponent<NavMeshAgent>();
+        capsuleTransform = transform.Find("Capsule");
     }
 
     public Vector3 GetPosition()
@@ -21,15 +24,21 @@ public class NPC : MonoBehaviour
         return transform.position;
     }
 
+    public virtual TaskBase StartTask()
+    {
+        if (npcType != null) return npcType.StartTask(this);
+        return new IdleTask(this); // default
+    }
+
+    public void AssignType(NPCType type)
+    {
+        npcType = type;
+        taskSystem = new NPCTaskSystem(this);
+    }
+
     public void Decorate()
     {
-        if (IsJason)
-        {
-            GameObject badge = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            badge.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-            badge.transform.position = transform.position + transform.forward * 0.50f;
-            badge.transform.parent = transform;
-        }
+        if (npcType != null) npcType.Decorate(this);
     }
 
     public void Move(Vector3 dir)
@@ -40,7 +49,7 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        taskSystem.Update();
+        if (npcType != null && taskSystem != null) taskSystem.Update();
     }
 }
 
@@ -52,8 +61,14 @@ public class NPCTaskSystem
     public NPCTaskSystem(NPC ParentNPC)
     {
         taskQueue = new Queue<NPCTask>();
-        taskQueue.Enqueue(new IdleTask(ParentNPC));
+        taskQueue.Enqueue(ParentNPC.StartTask());
         currentTask = taskQueue.Peek();
+    }
+
+    public void AbortTask()
+    {
+        if (taskQueue.Count < 2) taskQueue.Enqueue(currentTask.Next());
+        currentTask = taskQueue.Dequeue();
     }
 
     public void Update() // task queue
@@ -87,4 +102,9 @@ public interface NPCTask
     bool IsDone();
     void Update();
     NPCTask Next();
+}
+public interface NPCType
+{
+    public abstract void Decorate(NPC ParentNPC);
+    public abstract TaskBase StartTask(NPC ParentNPC);
 }

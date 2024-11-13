@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles Camera controls + inputs
 public class CameraController : MonoBehaviour
 {
     public Camera cam;
@@ -15,13 +16,27 @@ public class CameraController : MonoBehaviour
 
     private bool looking = false;
 
+    // used for capturing I suppose
+    private CameraTargetDetect cameraTargetDetect;
+
     void Start()
     {
         forward = cam.transform.forward;
+        cameraTargetDetect = GetComponent<CameraTargetDetect>();
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Take a picture!");
+            if (cameraTargetDetect.GetIsJasonFound())
+            {
+                Debug.Log("Bingo you win!");
+                // Call in a function from GameManager that shuts down the game
+            }
+        }
+
         if (Input.GetKey(KeyCode.A))
         {
             transform.rotation *= Quaternion.AngleAxis(1.0f * delta * Time.deltaTime, transform.up);
@@ -63,9 +78,6 @@ public class CameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    /// <summary>
-    /// Disable free looking.
-    /// </summary>
     public void StopLooking()
     {
         looking = false;

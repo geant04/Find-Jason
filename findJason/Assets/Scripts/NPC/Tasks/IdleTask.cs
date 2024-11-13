@@ -6,16 +6,24 @@ using UnityEngine.AI;
 public class IdleTask : TaskBase
 {
     private float idleTimer;
+    private float waitTime = -1.0f;
 
     private float GetWaitTime()
     {
-        return Random.Range(0.0f, 4.0f);
+        return waitTime == -1.0f ? Random.Range(0.0f, 4.0f) : waitTime;
     }
 
     public IdleTask(NPC parentNPC) : base(parentNPC)
     {
         ParentNPC = parentNPC;
         idleTimer = GetWaitTime();
+    }
+
+    public IdleTask(NPC parentNPC, float waitTime) : base(parentNPC)
+    {
+        ParentNPC = parentNPC;
+        idleTimer = waitTime;
+        this.waitTime = waitTime;
     }
 
     public override bool IsDone()
@@ -27,7 +35,7 @@ public class IdleTask : TaskBase
     {
         float random = Random.Range(0.0f, 1.0f);
 
-        if (!ParentNPC.IsJason && random > 0.70f)
+        if (!ParentNPC.IsJason && random > 0.96f)
         {
             return Missions.GoNearJason(ParentNPC);
         }
@@ -35,25 +43,8 @@ public class IdleTask : TaskBase
         if (random > 0.4f)
         {
             // A random walk...
-            for (int i = 0; i < 20; i++) 
-            {
-                float randOut = Random.Range(20.0f, 40.0f);
-                Vector3 randomDirection = Random.insideUnitSphere * randOut;
-                randomDirection.y = 0.0f;
-
-                Vector3 target = ParentNPC.GetPosition() + randomDirection;
-
-                NavMeshHit hit;
-                if (NavMesh.SamplePosition(target, out hit, randOut, NavMesh.AllAreas))
-                {
-                    NavMeshPath path = new NavMeshPath();
-                    if (NavMesh.CalculatePath(ParentNPC.GetPosition(), hit.position, NavMesh.AllAreas, path) 
-                        && path.status == NavMeshPathStatus.PathComplete)
-                    {
-                        return new WalkToTarget(hit.position, ParentNPC);
-                    }
-                }
-            }
+            Vector3 target = TargetFinding.GetRandomTarget(ParentNPC);
+            if (Vector3.Distance(target, ParentNPC.GetPosition()) > 0.1f) return new WalkToTarget(target, ParentNPC);
         }
 
         idleTimer = GetWaitTime();

@@ -50,35 +50,15 @@ public class Missions
     public static Mission GoNearJason(NPC ParentNPC)
     {
         Mission GoNearJason = new Mission(ParentNPC);
-        int trials = 20;
-
-        // calculate a direction towards Jason
-        for (int i = 0; i < trials && GameManager.Jason != null; i++)
-        {
-            Vector3 randomDirection = Random.insideUnitSphere;
-            randomDirection.y = 0.0f;
-
-            Vector3 toJason = GameManager.Jason.transform.position - ParentNPC.GetPosition();
-            float randOut = Random.Range(-2.0f, 2.0f) + toJason.magnitude;
-
-            randomDirection = Vector3.Normalize(randomDirection + toJason) * randOut;
-
-            Vector3 target = ParentNPC.GetPosition() + randomDirection;
-
-            NavMeshHit hit;
-
-            if (NavMesh.SamplePosition(target, out hit, randOut, NavMesh.AllAreas))
-            {
-                NavMeshPath path = new NavMeshPath();
-                if (NavMesh.CalculatePath(ParentNPC.GetPosition(), hit.position, NavMesh.AllAreas, path)
-                    && path.status == NavMeshPathStatus.PathComplete)
-                {
-                    GoNearJason.AddTask(new WalkToTarget(hit.position, ParentNPC));
-                    return GoNearJason;
-                }
-            }
-        }
-
+        Vector3 target = TargetFinding.GetTargetNearJason(ParentNPC);
+        GoNearJason.AddTask(new WalkToTarget(target, ParentNPC)); // TO DO: make a new task called "walk to leader"
         return GoNearJason;
+    }
+
+    public static Mission DoNothing(NPC ParentNPC)
+    {
+        Mission DoNothing = new Mission(ParentNPC);
+        DoNothing.AddTask(new IdleTask(ParentNPC, 9999999999.0f));
+        return DoNothing;
     }
 }
