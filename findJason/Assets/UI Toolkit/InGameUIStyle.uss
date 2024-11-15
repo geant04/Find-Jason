@@ -1,0 +1,19 @@
+.header {
+    font-size: 69px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 5px;
+    -unity-text-outline-color: rgba(0, 0, 0, 0.55);
+}
+
+.button {
+    width: 220px;
+    height: 60px;
+}
+
+.header2 {
+    font-size: 56px;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}

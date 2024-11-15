@@ -12,6 +12,7 @@ public class NPC : MonoBehaviour
     [HideInInspector] public bool IsJason = false;
     [HideInInspector] public NavMeshAgent NavMeshAgent;
     [HideInInspector] public Transform capsuleTransform;
+    public bool disable = false;
 
     public void Initialize()
     {
@@ -49,6 +50,7 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (disable) return;
         if (npcType != null && taskSystem != null) taskSystem.Update();
     }
 }

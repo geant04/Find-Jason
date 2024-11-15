@@ -20,6 +20,6 @@ public class NormalNPC : NPCType
 
         NPCParent.capsuleTransform.GetComponent<MeshRenderer>().material.SetColor("_Color", randomColor);
         NPCParent.transform.localScale = new Vector3(1.0f, Random.Range(0.2f, 1.5f), 1.0f);
-        NPCParent.moveSpeed = 0.0f;
+        NPCParent.NavMeshAgent.speed = Random.Range(0.4f, 3.5f);
     }
 }

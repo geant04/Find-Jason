@@ -5,6 +5,7 @@ using UnityEngine;
 // Handles Camera controls + inputs
 public class CameraController : MonoBehaviour
 {
+    public GameManager gameManager; // need a better solution to this
     public Camera cam;
     public float delta;
     public float transSpeed;
@@ -33,11 +34,12 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Take a picture!");
             if (cameraTargetDetect.GetIsJasonFound())
             {
                 Debug.Log("Bingo you win!");
                 // Call in a function from GameManager that shuts down the game
+                cameraTargetDetect.SetClick(true);
+                gameManager.Click();
             }
         }
 

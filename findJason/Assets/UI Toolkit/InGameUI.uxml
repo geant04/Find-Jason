@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/InGameUIStyle.uss?fileID=7433441132597879392&amp;guid=18ad2a123c5b0b14c982330c33823176&amp;type=3#InGameUIStyle" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; width: 100%;">
+        <ui:VisualElement name="SubContainer" style="flex-grow: 1; width: 100%; height: 60%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-direction: column; padding-top: 5%; padding-right: 5%; padding-bottom: 5%; padding-left: 5%;">
+            <ui:VisualElement name="TopRow" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-self: stretch; width: 100%; height: 0; flex-basis: auto; align-items: stretch; max-height: none;">
+                <ui:VisualElement name="TimerBox" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Time" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" class="header" style="height: 93px; -unity-text-outline-width: 2px;" />
+                    <ui:Label tabindex="-1" text="00000000000" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Time" class="header2" style="color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text="Objective: Find Jason" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" class="header2" style="-unity-text-align: upper-left; height: 108px;" />
+            </ui:VisualElement>
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

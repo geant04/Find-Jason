@@ -11,6 +11,11 @@ public class CameraTargetDetect : MonoBehaviour
     private bool IsJasonFound = false;
 
     private Vector2 viewportBounds = new Vector2(0.1f, 0.1f); // assumed centered at origin
+    private float progressToComplete = 0.0f;
+    private float decaySpeed = 2.4f;
+    private float progressSpeed = 1.2f;
+    private bool camReadyTriggered = false;
+    private bool clicked = false;
 
     public bool IsTargetInViewPort(Vector3 target)
     {
@@ -74,7 +79,24 @@ public class CameraTargetDetect : MonoBehaviour
 
     public void AssignDetection(bool Active)
     {
+        if (!camReadyTriggered && Active)
+        {
+            camReadyTriggered = true;
+            AudioClass.Instance.sfxSource.PlayOneShot(AudioClips.Instance.cameraReady);
+        }
+
         DetectorMat.SetInt("_Detected", Active ? 1 : 0);
+    }
+
+    public void SetClick(bool Active) // gets called externally from CameraController
+    {
+        DetectorMat.SetInt("_Clicked", Active ? 1 : 0);
+        clicked = Active;
+    }
+
+    public void UpdateUI()
+    {
+        DetectorMat.SetFloat("_Progress", progressToComplete);
     }
 
     public void Start()
@@ -92,15 +114,38 @@ public class CameraTargetDetect : MonoBehaviour
 
     public bool GetIsJasonFound()
     {
-        return IsJasonFound;
+        return IsJasonFound && progressToComplete >= 1.0f && !clicked;
+    }
+
+    public void Reset()
+    {
+        IsJasonFound = false;
+        SetClick(false);
+        camReadyTriggered = false;
+        progressToComplete = 0.0f;
     }
 
     public void Update()
     {
         GameObject Jason = GameManager.Jason;
         if (Jason == null) return;
+        if (clicked) return;
 
         IsJasonFound = IsJasonVisible(Jason);
-        AssignDetection(IsJasonFound);
+
+        AssignDetection(IsJasonFound && progressToComplete >= 1.0f);
+
+        if (!IsJasonFound)
+        {
+            camReadyTriggered = false;
+            progressToComplete = Mathf.Max(0.0f, progressToComplete - decaySpeed * Time.deltaTime);
+        }
+
+        if (progressToComplete < 1.1f && IsJasonFound)
+        {
+            progressToComplete = Mathf.Min(1.1f, progressToComplete + progressSpeed * Time.deltaTime);
+        }
+
+        UpdateUI();
     }
 }

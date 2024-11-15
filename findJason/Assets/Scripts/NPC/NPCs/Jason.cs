@@ -20,7 +20,12 @@ public class Jason : NPCType
         badge.transform.position = transform.position + transform.forward * 0.50f;
         badge.transform.parent = transform;
 
-        NPCParent.capsuleTransform.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.black);
-        NPCParent.moveSpeed = 1.0f;
+        Color randomColor = new Color();
+        randomColor.r = Random.Range(0.0f, 1.0f);
+        randomColor.g = Random.Range(0.0f, 1.0f);
+        randomColor.b = Random.Range(0.0f, 1.0f);
+
+        NPCParent.capsuleTransform.GetComponent<MeshRenderer>().material.SetColor("_Color", randomColor);
+        NPCParent.NavMeshAgent.speed = 3.5f;
     }
 }
