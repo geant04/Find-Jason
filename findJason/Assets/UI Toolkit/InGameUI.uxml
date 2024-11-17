@@ -7,7 +7,13 @@
                     <ui:Label tabindex="-1" text="Time" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" class="header" style="height: 93px; -unity-text-outline-width: 2px;" />
                     <ui:Label tabindex="-1" text="00000000000" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Time" class="header2" style="color: rgb(255, 255, 255);" />
                 </ui:VisualElement>
-                <ui:Label tabindex="-1" text="Objective: Find Jason" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" class="header2" style="-unity-text-align: upper-left; height: 108px;" />
+                <ui:VisualElement style="flex-grow: 1; align-self: flex-start; align-items: flex-end; flex-direction: column;">
+                    <ui:Label tabindex="-1" text="Objective: Find Jason" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" class="header2" style="-unity-text-align: upper-left; height: 108px;" />
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                        <ui:Label tabindex="-1" text="Color:" parse-escape-sequences="true" display-tooltip-when-elided="true" class="header2" />
+                        <ui:Label tabindex="-1" text="&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ColorBox" class="box" style="padding-top: 75px; padding-right: 75px; padding-bottom: 75px; padding-left: 75px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
         </ui:VisualElement>

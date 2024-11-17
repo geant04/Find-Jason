@@ -31,7 +31,7 @@ public class NPCSpawner
             NPCType type = AssignRandomNPCType();
 
             Vector3 randPos = Random.insideUnitSphere * 17.0f;
-            randPos.y = 20.0f;
+            randPos.y = 40.0f;
 
             SpawnNPC(isJason ? new Jason() : type, isJason, randPos);
         }

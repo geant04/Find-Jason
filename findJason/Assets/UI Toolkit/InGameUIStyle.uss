@@ -17,3 +17,15 @@
     -unity-text-outline-width: 1px;
     -unity-text-outline-color: rgb(0, 0, 0);
 }
+
+.box {
+    padding-top: 52px;
+    padding-right: 52px;
+    padding-bottom: 52px;
+    padding-left: 52px;
+    background-color: rgb(255, 255, 255);
+    margin-right: 32px;
+    margin-left: 32px;
+    height: 100px;
+    width: 100px;
+}

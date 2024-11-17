@@ -20,7 +20,9 @@ public class GameManager : MonoBehaviour
         timer.SetActive(false);
         float time = timer.GetTime();
 
+        AudioClass.Instance.sfxSource.volume = 0.25f;
         AudioClass.Instance.sfxSource.PlayOneShot(AudioClips.Instance.cameraClick);
+        AudioClass.Instance.sfxSource.volume = 1.00f;
         NPC[] npcs = Dynamic.GetComponentsInChildren<NPC>();
 
         for (int i = 0; i < npcs.Length; i++)
@@ -44,9 +46,21 @@ public class GameManager : MonoBehaviour
 
     public void GenerateWorld()
     {
+        bool debug = false;
+        int n = !debug ? 90 : 2;
+        int ic = !debug ? 4 : 0;
+
         npcSpawner = new NPCSpawner(Dynamic.transform, this);
-        npcSpawner.SpawnFriendsAndJason(90);
-        npcSpawner.SpawnIdleCrowds(4);
+        npcSpawner.SpawnFriendsAndJason(n);
+        npcSpawner.SpawnIdleCrowds(ic);
+
+        if (Jason != null && Jason.GetComponent<NPC>())
+        {
+            Color color = Jason.GetComponent<NPC>().GetColor();
+            color *= 0.8f; // to account for the post-processing unfortunately
+            color.a = 1.0f;
+            uiController.SetColor(color);
+        }
     }
 
     public IEnumerator ClickCooldown()

@@ -13,6 +13,7 @@ public class NPC : MonoBehaviour
     [HideInInspector] public NavMeshAgent NavMeshAgent;
     [HideInInspector] public Transform capsuleTransform;
     public bool disable = false;
+    private Color color;
 
     public void Initialize()
     {
@@ -35,6 +36,16 @@ public class NPC : MonoBehaviour
     {
         npcType = type;
         taskSystem = new NPCTaskSystem(this);
+    }
+
+    public Color GetColor()
+    {
+        return color;
+    }
+
+    public void SetColor(Color newColor)
+    {
+        color = newColor;
     }
 
     public void Decorate()

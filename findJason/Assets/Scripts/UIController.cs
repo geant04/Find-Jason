@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
     private UIDocument document;
     private Button button;
     private Label time;
+    private Label colorBox;
 
     private void Awake()
     {
@@ -15,6 +16,7 @@ public class UIController : MonoBehaviour
 
         VisualElement root = document.rootVisualElement;
         time = root.Q<Label>("Time");
+        colorBox = root.Q<Label>("ColorBox");
         time.text = "hi mom this is a test";
     }
 
@@ -23,5 +25,10 @@ public class UIController : MonoBehaviour
         System.TimeSpan t = System.TimeSpan.FromSeconds(value);
         string text = t.ToString(@"mm\:ss\:fff");
         time.text = text;
+    }
+
+    public void SetColor(Color color)
+    {
+        colorBox.style.backgroundColor = color;
     }
 }
