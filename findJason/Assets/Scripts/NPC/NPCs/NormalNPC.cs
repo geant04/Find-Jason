@@ -13,14 +13,21 @@ public class NormalNPC : NPCType
 
     public Mesh GetHat()
     {
-        float rand = Random.Range(0.0f, 1.0f);
+        int rand = Random.Range(0, ModelSingleton.Instance.hatMap.Count);
+        int idx = 0;
+        string key = "Fedora";
 
-        if (rand > 0.50f)
+        foreach (var keyValPair in ModelSingleton.Instance.hatMap)
         {
-            return ModelSingleton.Instance.hatMap["Fedora"];
+            if (idx == rand)
+            {
+                key = keyValPair.Key;
+                break;
+            }
+            idx++;
         }
 
-        return ModelSingleton.Instance.hatMap["Cap"];
+        return ModelSingleton.Instance.hatMap[key];
     }
 
     public void Decorate(NPC NPCParent)
@@ -29,6 +36,7 @@ public class NormalNPC : NPCType
         randomColor.r = Random.Range(0.0f, 1.0f);
         randomColor.g = Random.Range(0.0f, 1.0f);
         randomColor.b = Random.Range(0.0f, 1.0f);
+        randomColor = ColorUtil.HSVTransform(randomColor, 1.0f, 0.5f, 1.0f);
 
         NPCParent.capsuleTransform.GetComponent<MeshRenderer>().material.SetColor("_Color", randomColor);
         NPCParent.transform.localScale = new Vector3(1.0f, Random.Range(0.2f, 1.5f), 1.0f);
@@ -38,6 +46,6 @@ public class NormalNPC : NPCType
         Transform hat = NPCParent.transform.Find("Hat");
         Transform obj = hat.Find("obj");
         obj.GetComponent<MeshFilter>().mesh = GetHat();
-        obj.GetComponent<MeshRenderer>().material.SetColor("_Color", ColorUtil.HSVTransform(randomColor, 1.0f, 1.0f, 1.4f)); // add "wear"
+        obj.GetComponent<MeshRenderer>().material.SetColor("_Color", randomColor);
     }
 }

@@ -8,7 +8,7 @@ public class Jason : NPCType
 
     public TaskBase StartTask(NPC NPCParent)
     {
-        return new IdleTask(NPCParent);
+        return new JasonIdleTask(NPCParent);
     }
 
     public void Decorate(NPC NPCParent)
@@ -24,11 +24,11 @@ public class Jason : NPCType
         randomColor.r = Random.Range(0.0f, 1.0f);
         randomColor.g = Random.Range(0.0f, 1.0f);
         randomColor.b = Random.Range(0.0f, 1.0f);
-        randomColor = ColorUtil.HSVTransform(randomColor, 1.0f, 1.5f, 1.0f);
+        randomColor = ColorUtil.HSVTransform(randomColor, 1.0f, 3.0f, 1.0f);
 
         NPCParent.capsuleTransform.GetComponent<MeshRenderer>().material.SetColor("_Color", randomColor);
-        NPCParent.SetColor(randomColor);
-        NPCParent.NavMeshAgent.speed = 3.5f;
+        NPCParent.color = randomColor;
+        NPCParent.SetSpeed(3.5f);
 
         // hat stuff
         Transform hat = NPCParent.transform.Find("Hat");

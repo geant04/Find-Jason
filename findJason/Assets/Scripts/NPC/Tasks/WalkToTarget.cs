@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WalkToTarget : TaskBase, NPCTask
 {
-    private Vector3 target;
+    protected Vector3 target;
 
     public WalkToTarget(Vector3 target, NPC parentNPC) : base(parentNPC)
     {
@@ -26,6 +26,31 @@ public class WalkToTarget : TaskBase, NPCTask
 
     public override void Update()
     {
+        ParentNPC.NavMeshAgent.SetDestination(target);
+    }
+}
+
+public class JasonWalkToTarget : WalkToTarget
+{
+    private float walkSpeed;
+    public JasonWalkToTarget(Vector3 target, NPC parentNPC) : base(target, parentNPC)
+    {
+        this.target = target;
+        walkSpeed = parentNPC.NavMeshAgent.speed;
+    }
+
+    public override NPCTask Next()
+    {
+        return new JasonIdleTask(ParentNPC);
+    }
+
+    public override void Update()
+    {
+        if (ParentNPC.isFound)
+        {
+            ParentNPC.SetSpeed(walkSpeed * 1.25f);
+            Debug.Log("Start running, you're caught!");
+        }
         ParentNPC.NavMeshAgent.SetDestination(target);
     }
 }

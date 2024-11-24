@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         if (Jason != null && Jason.GetComponent<NPC>())
         {
-            Color color = Jason.GetComponent<NPC>().GetColor();
+            Color color = Jason.GetComponent<NPC>().color;
             color *= 0.8f; // to account for the post-processing unfortunately
             color.a = 1.0f;
             uiController.SetColor(color);

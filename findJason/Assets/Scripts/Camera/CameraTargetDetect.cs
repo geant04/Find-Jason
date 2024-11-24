@@ -112,7 +112,7 @@ public class CameraTargetDetect : MonoBehaviour
         DetectorMat.SetVector("_Bounds", viewportBounds);
     }
 
-    public bool GetIsJasonFound()
+    public bool GetIsJasonFullyFound()
     {
         return IsJasonFound && progressToComplete >= 1.0f && !clicked;
     }
@@ -132,6 +132,7 @@ public class CameraTargetDetect : MonoBehaviour
         if (clicked) return;
 
         IsJasonFound = IsJasonVisible(Jason);
+        Jason.GetComponent<NPC>().isFound = IsJasonFound;
 
         AssignDetection(IsJasonFound && progressToComplete >= 1.0f);
 

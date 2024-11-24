@@ -10,10 +10,11 @@ public class NPC : MonoBehaviour
 
     [HideInInspector] public float moveSpeed;
     [HideInInspector] public bool IsJason = false;
+    [HideInInspector] public bool isFound = false;
     [HideInInspector] public NavMeshAgent NavMeshAgent;
     [HideInInspector] public Transform capsuleTransform;
     public bool disable = false;
-    private Color color;
+    public Color color;
 
     public void Initialize()
     {
@@ -37,25 +38,14 @@ public class NPC : MonoBehaviour
         npcType = type;
         taskSystem = new NPCTaskSystem(this);
     }
-
-    public Color GetColor()
+    public void SetSpeed(float speed)
     {
-        return color;
-    }
-
-    public void SetColor(Color newColor)
-    {
-        color = newColor;
+        NavMeshAgent.speed = speed;
     }
 
     public void Decorate()
     {
         if (npcType != null) npcType.Decorate(this);
-    }
-
-    public void Move(Vector3 dir)
-    {
-        transform.position += Vector3.Normalize(dir) * moveSpeed * Time.deltaTime;
     }
 
     // Update is called once per frame

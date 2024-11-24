@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     public Camera cam;
     public float delta;
     public float transSpeed;
+    public float rotSpeed;
 
     public float maxZoomOut;
     public float maxZoomIn;
@@ -34,7 +35,7 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (cameraTargetDetect.GetIsJasonFound())
+            if (cameraTargetDetect.GetIsJasonFullyFound())
             {
                 Debug.Log("Bingo you win!");
                 // Call in a function from GameManager that shuts down the game
@@ -43,33 +44,15 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.rotation *= Quaternion.AngleAxis(1.0f * delta * Time.deltaTime, transform.up);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.rotation *= Quaternion.AngleAxis(-1.0f * delta * Time.deltaTime, transform.up);
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            cam.fieldOfView = Mathf.Max(maxZoomIn, cam.fieldOfView - transSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            cam.fieldOfView = Mathf.Min(maxZoomOut, cam.fieldOfView + transSpeed * Time.deltaTime);
-        }
+        if (Input.GetKey(KeyCode.A)) transform.rotation *= Quaternion.AngleAxis(1.0f * delta * Time.deltaTime, transform.up);
+        if (Input.GetKey(KeyCode.D)) transform.rotation *= Quaternion.AngleAxis(-1.0f * delta * Time.deltaTime, transform.up);
+        if (Input.GetKey(KeyCode.W)) cam.fieldOfView = Mathf.Max(maxZoomIn, cam.fieldOfView - transSpeed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.S)) cam.fieldOfView = Mathf.Min(maxZoomOut, cam.fieldOfView + transSpeed * Time.deltaTime);
 
         float y = transform.position.y;
 
-        if (Input.GetKey(KeyCode.Q))
-        {
-            y -= transSpeed * Time.deltaTime * (2.0f / (maxUp + maxLow + 0.001f));
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            y += transSpeed * Time.deltaTime * (2.0f / (maxUp + maxLow + 0.001f));
-        }
+        if (Input.GetKey(KeyCode.Q)) y -= transSpeed * Time.deltaTime * (2.0f / (maxUp + maxLow + 0.001f));
+        if (Input.GetKey(KeyCode.E)) y += transSpeed * Time.deltaTime * (2.0f / (maxUp + maxLow + 0.001f));
 
         y = Mathf.Clamp(y, ogPos.y - maxLow, ogPos.y + maxUp);
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
@@ -78,6 +61,21 @@ public class CameraController : MonoBehaviour
         {
             float newRotationX = cam.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * 1.0f;
             float newRotationY = cam.transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * 1.0f;
+            cam.transform.localEulerAngles = new Vector3(newRotationY, newRotationX, 0f);
+        }
+
+        float arrowX = 0.0f;
+        float arrowY = 0.0f;
+
+        if (Input.GetKey(KeyCode.LeftArrow)) arrowX = -1.0f;
+        if (Input.GetKey(KeyCode.RightArrow)) arrowX = 1.0f;
+        if (Input.GetKey(KeyCode.UpArrow)) arrowY = 1.0f;
+        if (Input.GetKey(KeyCode.DownArrow)) arrowY = -1.0f;
+
+        if (arrowX != 0.0f || arrowY != 0.0f)
+        {
+            float newRotationX = cam.transform.localEulerAngles.y + arrowX * rotSpeed * Time.deltaTime;
+            float newRotationY = cam.transform.localEulerAngles.x - arrowY * rotSpeed * Time.deltaTime;
             cam.transform.localEulerAngles = new Vector3(newRotationY, newRotationX, 0f);
         }
 
