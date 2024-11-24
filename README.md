@@ -33,16 +33,27 @@ Start off by forking this repository. In your README, write a design doc to outl
 
 Submit your Design doc as usual via pull request against this repository.
 ## Milestone 1: Implementation part 1 (due 11/13)
-Begin implementing your engine! Don't worry too much about polish or parameter tuning -- this week is about getting together the bulk of your generator implemented. By the end of the week, even if your visuals are crude, the majority of your generator's functionality should be done.
+- Things did:
+  - Implemented and designed a NPC AI system, included with a task-system (idle, walk using NavMesh)
+  - Created procedural crowd placement
+  - Basic camera controller movement
+  - Added a simple decorated map
+  - Game includes UI (timer for how long it took to find Jason) + shader for camera crosshair
 
-Put all your code in your forked repository.
+- Screenshots:
+  - ![Screenshot 2024-11-10 013112](https://github.com/user-attachments/assets/c5f5e464-7966-4cad-8655-68f33d731656)
+  - This is like the only screenshot I took testing NavMesh behavior, I can go back to my commit history and grab some early screenshots later
 
-Submission: Add a new section to your README titled: Milestone #1, which should include
-- written description of progress on your project goals. If you haven't hit all your goals, what's giving you trouble?
-- Examples of your generators output so far
-We'll check your repository for updates. No need to create a new pull request.
+
 ## Milestone 2: Implementation part 2 (due 11/25)
-We're over halfway there! This week should be about fixing bugs and extending the core of your generator. Make sure by the end of this week _your generator works and is feature complete._ Any core engine features that don't make it in this week should be cut! Don't worry if you haven't managed to exactly hit your goals. We're more interested in seeing proof of your development effort than knowing your planned everything perfectly. 
+- Things did: 
+  - NPCs are now decorated with fun colors and random hats (fedora, cap, wizard hat, top hat)
+  - Gameplay tweaks based on testing and design feedback added, for ex: crosshair has more vibrant colors
+  - More procedural-esque elements will be added to the NPCs so this project becomes more like a procedural project and less like a game dev project
+
+- Screenshots:
+  - ![Screenshot 2024-11-24 183425](https://github.com/user-attachments/assets/d4e9361e-c80b-49f0-9b5b-3341dc495dd1)
+
 
 Put all your code in your forked repository.
 
