@@ -21,7 +21,7 @@ https://docs.google.com/document/d/18ytXKak0JDi7xGlXHXz8lmfBFz817IacCAYT6OszzlM/
 - Things did: 
   - NPCs are now decorated with fun colors and random hats (fedora, cap, wizard hat, top hat)
   - Gameplay tweaks based on testing and design feedback added, for ex: crosshair has more vibrant colors
-  - More procedural-esque elements will be added to the NPCs so this project has more procedural elements
+  - More procedural-esque elements will be added to the NPCs
 
 - Screenshots:
   - ![Screenshot 2024-11-24 183425](https://github.com/user-attachments/assets/d4e9361e-c80b-49f0-9b5b-3341dc495dd1)
