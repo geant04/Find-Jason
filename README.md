@@ -1,37 +1,9 @@
-# Final Project!
-
-This is it! The culmination of your procedural graphics experience this semester. For your final project, we'd like to give you the time and space to explore a topic of your choosing. You may choose any topic you please, so long as you vet the topic and scope with an instructor or TA. We've provided some suggestions below. The scope of your project should be roughly 1.5 homework assignments). To help structure your time, we're breaking down the project into 4 milestones:
+# Final Project: Find Jason!
 
 ## Project planning: Design Doc (due 11/6)
 Before submitting your first milestone, _you must get your project idea and scope approved by Rachel, Adam or a TA._
 https://docs.google.com/document/d/18ytXKak0JDi7xGlXHXz8lmfBFz817IacCAYT6OszzlM/edit?usp=sharing
 
-### Design Doc
-Start off by forking this repository. In your README, write a design doc to outline your project goals and implementation plan. It must include the following sections:
-
-#### Introduction
-- What motivates your project?
-
-#### Goal
-- What do you intend to achieve with this project?
-
-#### Inspiration/reference:
-- You must have some form of reference material for your final project. Your reference may be a research paper, a blog post, some artwork, a video, another class at Penn, etc.  
-- Include in your design doc links to and images of your reference material.
-
-#### Specification:
-- Outline the main features of your project.
-
-#### Techniques:
-- What are the main technical/algorithmic tools you’ll be using? Give an overview, citing specific papers/articles.
-
-#### Design:
-- How will your program fit together? Make a simple free-body diagram illustrating the pieces.
-
-#### Timeline:
-- Create a week-by-week set of milestones for each person in your group. Make sure you explicitly outline what each group member's duties will be.
-
-Submit your Design doc as usual via pull request against this repository.
 ## Milestone 1: Implementation part 1 (due 11/13)
 - Things did:
   - Implemented and designed a NPC AI system, included with a task-system (idle, walk using NavMesh)
@@ -49,7 +21,7 @@ Submit your Design doc as usual via pull request against this repository.
 - Things did: 
   - NPCs are now decorated with fun colors and random hats (fedora, cap, wizard hat, top hat)
   - Gameplay tweaks based on testing and design feedback added, for ex: crosshair has more vibrant colors
-  - More procedural-esque elements will be added to the NPCs so this project becomes more like a procedural project and less like a game dev project
+  - More procedural-esque elements will be added to the NPCs so this project has more procedural elements
 
 - Screenshots:
   - ![Screenshot 2024-11-24 183425](https://github.com/user-attachments/assets/d4e9361e-c80b-49f0-9b5b-3341dc495dd1)
