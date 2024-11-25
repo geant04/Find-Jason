@@ -1,4 +1,5 @@
 # Final Project: Find Jason!
+![findJasonDemoCompressed](https://github.com/user-attachments/assets/93c35d57-3be4-4591-bb53-8a82488f5032)
 
 ## Project planning: Design Doc (due 11/6)
 Before submitting your first milestone, _you must get your project idea and scope approved by Rachel, Adam or a TA._
