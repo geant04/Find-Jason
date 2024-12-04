@@ -38,6 +38,9 @@ We'll check your repository for updates. No need to create a new pull request.
 Come to class on the due date with a WORKING COPY of your project. We'll be spending time in class critiquing and reviewing your work so far.
 
 ## Final submission (due 12/2)
+Final results: essentially above, changed NPCs but visually not quite noticeable at first glance
+Post Mortem: https://docs.google.com/presentation/d/1MQsszsQCy6auEcamrufvkKPlD4Cv18ylgz1tqqzATz0/edit?usp=sharing
+
 Time to polish! Spen this last week of your project using your generator to produce beautiful output. Add textures, tune parameters, play with colors, play with camera animation. Take the feedback from class critques and use it to take your project to the next level.
 
 Submission:
