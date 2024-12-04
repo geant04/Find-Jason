@@ -257,7 +257,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8887007708145815442}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.47
+  m_Radius: 0.35
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -282,11 +282,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee76d2f2f3dd7604e988a3d18e6ef3e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hat: {fileID: 0}
   moveSpeed: 1.36
   IsJason: 0
+  isFound: 0
   NavMeshAgent: {fileID: 0}
   capsuleTransform: {fileID: 0}
   disable: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &9205542963198917519
 GameObject:
   m_ObjectHideFlags: 0

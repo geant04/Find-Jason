@@ -37,6 +37,25 @@ public class NPCSpawner
         }
     }
 
+    public void SpawnMafia(int n, bool line)
+    {
+        // spawn leader first
+        Vector3 randPos = Random.insideUnitSphere * 17.0f;
+        randPos.y = 40.0f;
+        GameObject leader = SpawnNPC(new LeaderNPC(), false, randPos);
+        Color ogColor = leader.GetComponent<NPC>().color;
+
+        for (int i = 0; i < n - 1; i++)
+        {
+            randPos = Random.insideUnitSphere * ((n - 1) / 2.0f);
+            randPos.y = 0.0f;
+            randPos += leader.transform.position;
+
+            GameObject temp = SpawnNPC(new HenchmanNPC(leader.GetComponent<NPC>(), ogColor), false, randPos);
+            leader = line ? temp : leader; // create a ring of fellas
+        }
+    }
+
     public void SpawnIdleCrowds(int n)
     {
         for (int i = 0; i < n; i++)
@@ -60,7 +79,7 @@ public class NPCSpawner
         }
     }
 
-    public void SpawnNPC(NPCType npcType, bool isJason, Vector3 position)
+    public GameObject SpawnNPC(NPCType npcType, bool isJason, Vector3 position)
     {
         GameObject npc = Object.Instantiate(manager.NPC, parent);
 
@@ -77,5 +96,7 @@ public class NPCSpawner
 
         npc.GetComponent<NPC>().AssignType(npcType);
         npc.GetComponent<NPC>().Decorate();
+
+        return npc;
     }
 }

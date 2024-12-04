@@ -46,11 +46,7 @@ public class JasonWalkToTarget : WalkToTarget
 
     public override void Update()
     {
-        if (ParentNPC.isFound)
-        {
-            ParentNPC.SetSpeed(walkSpeed * 1.25f);
-            Debug.Log("Start running, you're caught!");
-        }
+        if (ParentNPC.isFound) ParentNPC.SetSpeed(walkSpeed * 1.25f);
         ParentNPC.NavMeshAgent.SetDestination(target);
     }
 }

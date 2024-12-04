@@ -6,10 +6,17 @@ using UnityEngine.AI;
 public class Mission : TaskBase, NPCTask
 {
     private Queue<NPCTask> tasks = new Queue<NPCTask>();
+    private NPCTask nextTask;
     private NPCTask currentTask;
 
-    public Mission(NPC parentNPC) : base(parentNPC)
-    {}
+    public Mission(NPC parentNPC) : base(parentNPC) 
+    {
+        nextTask = new IdleTask(parentNPC);
+    }
+    public Mission(NPC parentNPC, NPCTask nextTask) : base(parentNPC)
+    {
+        this.nextTask = nextTask;
+    }
 
     public void AddTask(NPCTask task)
     {
@@ -18,7 +25,7 @@ public class Mission : TaskBase, NPCTask
 
     public override NPCTask Next()
     {
-        return new IdleTask(ParentNPC);
+        return nextTask;
     }
 
     public override bool IsDone()
@@ -60,5 +67,17 @@ public class Missions
         Mission DoNothing = new Mission(ParentNPC);
         DoNothing.AddTask(new IdleTask(ParentNPC, 9999999999.0f));
         return DoNothing;
+    }
+
+    public static Mission FollowLeader(NPC ParentNPC)
+    {
+        Mission FollowLeader = new Mission(ParentNPC, new WalkToLeader(new Vector3(0, -10000, 0), ParentNPC)); // horrible hack to skip a task
+        HenchmanNPC henchman = ParentNPC.npcType as HenchmanNPC;
+        NPC Leader = henchman.leader;
+
+        Vector3 target = TargetFinding.GetTargetNearLeader(ParentNPC, Leader);
+        FollowLeader.AddTask(new WalkToLeader(target, ParentNPC)); // TO DO: make a new task called "walk to leader"
+
+        return FollowLeader;
     }
 }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalNPC : NPCType
+public class LeaderNPC : NPCType
 {
-    public NormalNPC() {  }
+    public LeaderNPC() {  }
 
     public TaskBase StartTask(NPC NPCParent)
     {
@@ -35,14 +35,15 @@ public class NormalNPC : NPCType
         Color randomColor = ColorUtil.GetRandomColor();
         randomColor = ColorUtil.HSVTransform(randomColor, 1.0f, 0.5f, 1.0f);
 
+        NPCParent.color = randomColor;
         NPCParent.capsuleTransform.GetComponent<MeshRenderer>().material.SetColor("_Color", randomColor);
-        NPCParent.transform.localScale = new Vector3(1.0f, Random.Range(0.2f, 1.5f), 1.0f);
-        NPCParent.NavMeshAgent.speed = Random.Range(0.4f, 3.5f);
+        NPCParent.NavMeshAgent.speed = 3.5f;
 
         // hat stuff
         Transform hat = NPCParent.transform.Find("Hat");
         Transform obj = hat.Find("obj");
-        obj.GetComponent<MeshFilter>().mesh = GetHat();
+        NPCParent.hat = GetHat();
+        obj.GetComponent<MeshFilter>().mesh = NPCParent.hat;
         obj.GetComponent<MeshRenderer>().material.SetColor("_Color", randomColor);
     }
 }

@@ -47,12 +47,27 @@ public class GameManager : MonoBehaviour
     public void GenerateWorld()
     {
         bool debug = false;
-        int n = !debug ? 90 : 2;
+        int n = !debug ? 120 : 2;
         int ic = !debug ? 4 : 0;
 
         npcSpawner = new NPCSpawner(Dynamic.transform, this);
         npcSpawner.SpawnFriendsAndJason(n);
-        npcSpawner.SpawnIdleCrowds(ic);
+        //npcSpawner.SpawnIdleCrowds(ic);
+        npcSpawner.SpawnMafia(8, true);
+        npcSpawner.SpawnMafia(8, false);
+
+        if (!debug)
+        {
+            npcSpawner.SpawnMafia(4, true);
+            npcSpawner.SpawnMafia(8, true);
+            npcSpawner.SpawnMafia(12, true);
+            npcSpawner.SpawnMafia(8, false);
+            npcSpawner.SpawnMafia(8, false);
+            npcSpawner.SpawnMafia(2, false);
+            npcSpawner.SpawnMafia(2, false);
+            npcSpawner.SpawnMafia(2, false);
+            npcSpawner.SpawnMafia(2, false);
+        }
 
         if (Jason != null && Jason.GetComponent<NPC>())
         {
@@ -133,11 +148,11 @@ public class GameManager : MonoBehaviour
      * 
      * NPC decorations to add
      * 
-     * - cool baseball cap hat
-     * - fedora hat, very roblox
+     * - cool baseball cap hat [x]
+     * - fedora hat, very roblox [x]
      * - shirts, many shirts cool shirts
      * - pants pants pants
-     * - something jason esque, i'll have to ask him
+     * - something jason esque, i'll have to ask him [x]
      * - sunglasses
      * - accessories for people to hold like an ice cream cone for the kids or something
      * - sunhat

@@ -14,4 +14,13 @@ public class ColorUtil
 
         return Color.HSVToRGB(hsv.x, hsv.y, hsv.z);
     }
+
+    public static Color GetRandomColor()
+    {
+        Color randomColor = new Color();
+        randomColor.r = Random.Range(0.0f, 1.0f);
+        randomColor.g = Random.Range(0.0f, 1.0f);
+        randomColor.b = Random.Range(0.0f, 1.0f);
+        return randomColor;
+    }
 }

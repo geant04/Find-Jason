@@ -5,8 +5,9 @@ using UnityEngine.AI;
 
 public class NPC : MonoBehaviour
 {
-    NPCTaskSystem taskSystem;
-    NPCType npcType;
+    public NPCTaskSystem taskSystem;
+    public NPCType npcType;
+    public Mesh hat;
 
     [HideInInspector] public float moveSpeed;
     [HideInInspector] public bool IsJason = false;
@@ -76,6 +77,11 @@ public class NPCTaskSystem
 
     public void Update() // task queue
     {
+        if (currentTask == null)
+        {
+            Debug.Log(taskQueue);
+            currentTask = taskQueue.Dequeue();
+        }
         if (currentTask.IsDone())
         {
             taskQueue.Enqueue(currentTask.Next());

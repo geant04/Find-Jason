@@ -15,7 +15,6 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
