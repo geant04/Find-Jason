@@ -1,15 +1,16 @@
 # CIS 5660 Final Project: Find Jason!
 ![findJasonDemoCompressed](https://github.com/user-attachments/assets/93c35d57-3be4-4591-bb53-8a82488f5032)
 
-This is my repository detailing my progress and work creating Find Jason, a challenging surveillance-type game featuring many fun procedural elements!
+This is my repository detailing my progress and work creating Find Jason, a challenging surveillance-type game featuring many fun, procedural elements!
 Features implemented include:
-- A state-machine based AI (designed and implemented tasks for NPCs to do in a queue)
+- A state-machine-based AI (designed and implemented tasks for NPCs organized in a queue)
 - NavMesh Agent navigation, being the pathfinding for all of the AI
 - Procedural behavior generation, dependent on player interactions with the environment (running, walking, idle state)
 - Procedural crowd placement and NPC decoration! All agents are mathematically unique, sporting different hats, colors, and physical attributes.
 - Swivel camera, accessible to keyboard-only and mouse gameplay interaction
 - Responsive UI to spotting our target Jason using Unity Shadergraph
 
+Making the game was a fun exploration into the basics of crowd simulation and agent behaviors, and I plan to include more NPCs with procedural variety.
 An overall final presentation/write-up can be found here: 
 https://docs.google.com/presentation/d/1MQsszsQCy6auEcamrufvkKPlD4Cv18ylgz1tqqzATz0/edit?usp=sharing
 
