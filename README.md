@@ -3,7 +3,7 @@
 
 This is my repository detailing my progress and work creating Find Jason, a challenging surveillance-type game featuring many fun procedural elements!
 Features implemented include:
-- An state-machine based AI (designed and implemented tasks for NPCs to do in a queue)
+- A state-machine based AI (designed and implemented tasks for NPCs to do in a queue)
 - NavMesh Agent navigation, being the pathfinding for all of the AI
 - Procedural behavior generation, dependent on player interactions with the environment (running, walking, idle state)
 - Procedural crowd placement and NPC decoration! All agents are mathematically unique, sporting different hats, colors, and physical attributes.
