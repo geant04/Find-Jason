@@ -56,7 +56,6 @@ public class Button : MonoBehaviour
         canClick = false;
     }
 
-
     private void Update()
     {
         if (canClick && Input.GetKeyDown(keyCode))
